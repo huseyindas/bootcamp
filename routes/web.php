@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LayoutsController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +20,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//İNDEX ROUTE
+
+//Route::get('/', function () {return view('index');});
+Route::get("/", [ProjectController::class, "index"]);
+//HAKKIMDA ROUTE
+
+Route::get("abaout", [HomeController::class, "abaoutMe"]);
+
+//TABLOLAR
+
+Route::get("categories", [CategoryController::class, "showCategories"])->name("categories.show");
+Route::get("users", [UserController::class, "showUsers"])->name("users.show");
+Route::get("sliders", [SliderController::class, "showSliders"])->name("sliders.show");
+
+
+//PRODUCTS
+
+Route::resource("/products", ProductController::class);
+Route::get("/products-export", [ProductController::class, "export"])->name("products.export");
+Route::get("/products-deneme", [ProductController::class, "deneme"])->name("products.deneme");
+Route::post("/products-import", [ProductController::class, "import"])->name("products.import");
+
+
+
