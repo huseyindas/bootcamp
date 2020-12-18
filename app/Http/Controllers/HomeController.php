@@ -28,5 +28,10 @@ class HomeController extends Controller
 
         return view('userProducts', compact('userProducts'));
     }
+
+    function forgottenPassword() {
+        $users = User::all();
+        return view('auth.forgot-password', compact('users'));
+    }
 }
 

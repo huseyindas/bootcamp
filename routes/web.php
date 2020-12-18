@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LayoutsController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SliderController;
@@ -42,5 +43,8 @@ Route::get("/products-export", [ProductController::class, "export"])->name("prod
 Route::get("/products-deneme", [ProductController::class, "deneme"])->name("products.deneme");
 Route::post("/products-import", [ProductController::class, "import"])->name("products.import");
 
+//LOGİN
 
+Route::get('/forgot-password', [PasswordController::class, 'forgot'])->name('login.forgot-password');
+Route::post('/send-password', [PasswordController::class, 'send'])->name('login.send-password');
 
